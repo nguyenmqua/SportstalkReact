@@ -41,6 +41,7 @@ const CommentSection = ({ post }) => {
         })
         .then( res=>{
           setNewComment("")
+          console.log(res)
           setComments(res.data.Comments) 
     
         })

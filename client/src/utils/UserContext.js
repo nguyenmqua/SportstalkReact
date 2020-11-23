@@ -10,7 +10,9 @@ const UserContext = React.createContext({
   handleLogin: () => {},
   handleSignup: () => {},
   logout: () => {},
-  setUser: () =>{}
+  setUser: () =>{},
+  uploadImage: () =>{},
+  setImageSelected: ()=>{},
 });
 
 export default UserContext;

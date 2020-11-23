@@ -6,41 +6,14 @@ import {Form, Input} from 'reactstrap'
 
 const Edit  = () => {
     const [Open, setOpen] = useState(false)
-    const {user, setUser} =useContext(UserContext)
-    const [imageSelected, setImageSelected] = useState({})
-    const [loading, setLoading] = useState(false)
-
-
-    const uploadImage = async (e) => {
-        const files = e.target.files
-        const data = new FormData()
-        data.append('file', imageSelected)
-        data.append('upload_preset', 'janishto')
-        setLoading(true)
-        console.log(data)
-        const res = await fetch(
-          'https://api.cloudinary.com/v1_1/sportstalk/image/upload',
-          {
-            method: 'POST',
-            body: data
-          }
-        )
-        const file = await res.json()
-          console.log(file.secure_url)
-
-        const newUserData = await API.getUpdateProfilePic({
-          userId: user._id,
-          profilePic: file.secure_url
-        })
-        console.log(newUserData.data)
-        // setUser(newUserData.data)
-        }
-
-    ;
+    const {setImageSelected,uploadImage} =useContext(UserContext)
+   
+  
     return(
         <>
         <Modal
         open={Open}
+        size= "tiny"
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         trigger={<Button>Edit Profile Pic</Button>}

@@ -21,10 +21,6 @@ module.exports = {
         db.Comments
         .find({postId: req.params.id})
         .populate("userId")
-        .populate({
-            path:"userId",
-            populate: {path: "profilePic"}
-        })
         .then(DBpost => res.json(DBpost))
         .catch(err => res.status(422).json(err));
     }

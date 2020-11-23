@@ -14,6 +14,7 @@ import Comment from "./components/Comments"
 
 
 const App = () => {
+  
   const [userData, setUserData] = useState({
     firstname: '',
     lastname: '',
@@ -25,9 +26,39 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [failureMessage, setFailureMessage] = useState(null);
   const [loginFailureMessage, setLoginFailureMessage] = useState("")
+  const [imageSelected, setImageSelected] = useState({})
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     isLoggedIn();
   }, []);
+
+  
+
+  const uploadImage = async (e) => {
+      const files = e.target.files
+      const data = new FormData()
+      data.append('file', imageSelected)
+      data.append('upload_preset', 'janishto')
+      setLoading(true)
+      console.log(data)
+      const res = await fetch(
+        'https://api.cloudinary.com/v1_1/sportstalk/image/upload',
+        {
+          method: 'POST',
+          body: data
+        }
+      )
+      const file = await res.json()
+        console.log(file.secure_url)
+
+      const newUserData = await API.getUpdateProfilePic({
+        userId: user._id,
+        profilePic: file.secure_url
+      })
+      console.log(newUserData.data)
+      setUser(newUserData.data)
+      }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -133,7 +164,8 @@ const App = () => {
     handleLogin,
     handleSignup,
     logout,
-    setUser,
+    setImageSelected,
+    uploadImage
   };
 
   return (
