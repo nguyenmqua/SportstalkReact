@@ -17,7 +17,6 @@ const Edit  = () => {
         data.append('file', imageSelected)
         data.append('upload_preset', 'janishto')
         setLoading(true)
-        console.log(data)
         const res = await fetch(
           'https://api.cloudinary.com/v1_1/sportstalk/image/upload',
           {
@@ -26,14 +25,13 @@ const Edit  = () => {
           }
         )
         const file = await res.json()
-          console.log(file.secure_url)
 
         const newUserData = await API.getUpdateProfilePic({
           userId: user._id,
           profilePic: file.secure_url
         })
-        console.log(newUserData.data)
-        // setUser(newUserData.data)
+        window.location.href = '/';
+            
         }
 
     ;

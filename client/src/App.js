@@ -11,6 +11,7 @@ import TopNav from './components/TopNav';
 import { Container } from 'reactstrap';
 import UserContext from './utils/UserContext';
 import Comment from "./components/Comments"
+import Bet from "./components/Bet"
 
 
 const App = () => {
@@ -46,9 +47,8 @@ const App = () => {
           if (user.data.loggedIn) {
             setLoggedin(true);
             setUser(user.data.user);
-            console.log(user.data.user)
             console.log('log in successful');
-            // window.location.href = '/profile';
+            window.location.href = '/';
           } else {
             console.log('Something went wrong :(');
             setLoginFailureMessage('Login failed, Please try again.');
@@ -160,6 +160,7 @@ const App = () => {
               <Route render={NoMatch} />
               <Comment />
               <Edit />
+              <Bet />
             </Switch>
           </Container>
         </div>

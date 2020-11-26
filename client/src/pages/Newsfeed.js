@@ -2,12 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import API from "../utils/API"
 import UserContext from '../utils/UserContext';
 import Login from "../components/Login"
-import { Card, Button,Icon, Image,Grid } from 'semantic-ui-react'
+import { Card, Icon, Image,Grid, Popup } from 'semantic-ui-react'
 import moment from 'moment'
 import Post from "../pages/Post"
 import Comments from "../components/Comments"
-import SportTicket from "../components/SportsTicket";
-import Edit from "../components/Edit"
+import Odds from "../components/Odds";
+import Edit from "../components/Edit";
+import Bet from "../components/Bet"
 const style = {
     h1: {
       padding: '5px'
@@ -30,7 +31,7 @@ function Newsfeed(props){
         API.newsfeed()
         .then(res => {
             setAllPost(res.data)
-            console.log(res.data)})
+        })
         .catch(err => console.log(err))
     }
 
@@ -48,6 +49,9 @@ function Newsfeed(props){
         {/* {loggedIn ? ( */}
             <Grid columns="equal">
                 <Grid.Column>
+                    <Odds />
+                    <Edit />
+                    <Bet />
                 </Grid.Column>
                 <Grid.Column width ={10}>
                     <Card.Group >
@@ -55,8 +59,12 @@ function Newsfeed(props){
                         {AllPost && AllPost.map(post => (
                             <Card fluid color="blue" key={post._id} style={style.h1}>
                                 <Card.Content>
-                                    <Image floated="right" size="mini" src={post.userId.profilePic}/>
-                                    <Card.Header> 
+                                <Popup
+                                    content = {"Member Since "+  moment(post.userId.creatAt).format('MMMM  YYYY')}
+                                    header={post.userId.username}
+                                    trigger={ <Image floated="left"  size='tiny' circular src={post.userId.profilePic}/>}
+                                />
+                                    <Card.Header as='a'> 
                                         <h4>{post.userId.username}</h4>   
                                     </Card.Header> 
                                     <Card.Meta>
@@ -79,12 +87,10 @@ function Newsfeed(props){
                             </Card>
                             ))}
                     </Card.Group>
-              </Grid.Column>
+                </Grid.Column>
                  
-                 <Grid.Column>
-                <SportTicket />
-                <Edit />
-              </Grid.Column>
+                <Grid.Column>
+                </Grid.Column>
             </Grid>
         {/* ) : (          
         <Login />       

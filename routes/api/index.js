@@ -6,6 +6,8 @@ const newsfeed = require("./newsfeed");
 const comments = require("./comments");
 const sports = require("./sports");
 const profile = require("./profile")
+const sportsNews = require("./sportsnews")
+const usersdata  = require("./usersdata")
 
 
 router.use("/post", post);
@@ -14,6 +16,8 @@ router.use("/users", users);
 router.use("/comments", comments);
 router.use("/sportsdata", sports);
 router.use("/profile", profile);
+router.use("/sportsnews",sportsNews)
+router.use("/usersdata",usersdata)
 
 
 module.exports = router;

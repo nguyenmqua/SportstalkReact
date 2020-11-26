@@ -3,11 +3,6 @@ import API from "../utils/API"
 import { Form, Header, Image, Card} from "semantic-ui-react"
 import UserContext from '../utils/UserContext';
 import Login from "../components/Login"
-import styled from "styled-components"
-
-const Div = styled.div`
-   padding: 10px;
-`;
 
 
 
@@ -39,7 +34,7 @@ function Member(props) {
       {/* {loggedIn ? ( */}
         
        <Card.Group className="post">
-        <Card  fluid color="blue"><Div>
+        <Card  fluid color="blue">
           <Header as="h2">
             <Image circular src='/images/avatar/large/patrick.png'/>{user && user.firstname}, what is on your mind?
           </Header>
@@ -47,7 +42,7 @@ function Member(props) {
             <Form.TextArea onChange={(e) => setPost(e.target.value)} placeholder='What sup?' />
             <Form.Button onClick ={handleUserBtnClick}>Submit</Form.Button>
           </Form>
-          </Div></Card>
+        </Card>
       </Card.Group>
     
          {/* ) : (

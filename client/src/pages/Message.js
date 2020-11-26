@@ -23,7 +23,6 @@ function Message(props){
             setCurrentPost(res.data) 
             setCurrentPostAuthor(res.data.userId.username) 
             setDisplayComments(res.data.Comments)
-            console.log(res.data.Comments)
         })
         .then(()=> console.log(CurrentPostAuthor))
         .catch(err => console.log(err))
@@ -42,7 +41,6 @@ function Message(props){
             userId: user._id,
             postid: id
           })
-          console.log(res)
           window.location.href = "/post/" +id
         } catch (error) {
           console.log(

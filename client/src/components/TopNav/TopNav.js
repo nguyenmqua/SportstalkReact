@@ -14,11 +14,13 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import SportsTicker from "../Ticker"
+
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { loggedIn, logout } = useContext(UserContext);
-
+ 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -26,6 +28,7 @@ const Navigation = () => {
 
   return (
     <div>
+      <SportsTicker />
       <Navbar className="navbar" light expand="md">
         <NavbarBrand href="/">Sports Talk</NavbarBrand>
         <NavbarToggler onClick={toggle} />

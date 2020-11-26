@@ -5,10 +5,13 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
+    "beautiful-react-news-ticker": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.3",
+    "react-ticker": "^1.2.2",
+    "reactstrap": "^8.7.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1"
   },

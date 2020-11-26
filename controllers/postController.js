@@ -2,7 +2,6 @@ const db = require("../models")
 
 module.exports = {
     create: function(req,res){
-        console.log(req.body)
         db.Post
         .create(req.body) 
         .then(res => db.User.findOneAndUpdate({_id: req.body.userId}, { $push: { Posts: res._id } }, { new: true },))

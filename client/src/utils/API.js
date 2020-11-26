@@ -18,7 +18,6 @@ export default {
   },
 
   getUserData: function(id){
-    console.log(id)
     return axios.get("/api/login/" + id)
   },
 
@@ -27,7 +26,6 @@ export default {
   },
 
   newsfeed: function(){
-    console.log("front end api")
     return axios.get("/api/newsfeed")
   },
 
@@ -51,8 +49,26 @@ export default {
     return axios.get("/api/sportsdata")
   },
 
+  getSportsNews: function () {
+    return axios.get("/api/sportsnews")
+  },
+
   getUpdateProfilePic(profilePic){
     return axios.post("/api/profile/", profilePic)
+  },
+
+  getUsers(){
+    return axios.get("/api/usersdata")
+  },
+
+  getUser(id){
+    return axios.get("/api/usersdata/"+id)
+  },
+
+
+  postBet(data){
+    console.log(data)
+    return axios.post("/api/bets", data )
   }
 
   

@@ -8,6 +8,9 @@ const style = {
   h1: {
     marginTop: "10px",
     padding: "5px"
+  },
+    button: {
+     padding: "10px"
   }
 }
 
@@ -24,10 +27,8 @@ const CommentSection = ({ post }) => {
       }, [])
 
     const loadComments = () => {
-        console.log(post)
         API.getComment(post)
         .then(res => {
-            console.log(res.data)
              setComments(res.data)  
         })
     }
@@ -58,14 +59,14 @@ const CommentSection = ({ post }) => {
             </Button>
             {showComment ? (
               <>
-              <Form>
+              <Form style={style.h1}>
                 <TextArea value={newComment} rows={2} onChange={(e) => setNewComment(e.target.value)} placeholder='Reply here' />
                 <Form.Button style={style.h1} content='Add Reply' floated="right"labelPosition='left' icon='edit' primary onClick={handleCommentPost}/>
               </Form>
               <Comment.Group>
               {Comments.map(comment=>(
                 <Comment key={comment._id}>
-                <Comment.Avatar src={comment.userId.profilePic.profilePic} />
+                <Comment.Avatar src={comment.userId.profilePic} />
                 <Comment.Content>
                   <Comment.Author as='a'>{comment.userId.username}</Comment.Author>
                   <Comment.Metadata>
