@@ -17,7 +17,7 @@ const style = {
 
 
 const CommentSection = ({ post }) => {
-    const { loggedIn, user} = useContext(UserContext);
+    const { user} = useContext(UserContext);
     const [Comments, setComments] = useState([])
     const [newComment, setNewComment] = useState("")
     const [showComment, setshowComment] = useState(false)

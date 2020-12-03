@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import UserContext from '../../utils/UserContext';
 import { Button, Modal} from 'semantic-ui-react'
 import API from '../../utils/API';
@@ -6,13 +6,12 @@ import {Form, Input} from 'reactstrap'
 
 const Edit  = () => {
     const [Open, setOpen] = useState(false)
-    const {user, setUser} =useContext(UserContext)
+    const {user} =useContext(UserContext)
     const [imageSelected, setImageSelected] = useState({})
     const [loading, setLoading] = useState(false)
 
 
     const uploadImage = async (e) => {
-        const files = e.target.files
         const data = new FormData()
         data.append('file', imageSelected)
         data.append('upload_preset', 'janishto')
@@ -26,7 +25,7 @@ const Edit  = () => {
         )
         const file = await res.json()
 
-        const newUserData = await API.getUpdateProfilePic({
+      API.getUpdateProfilePic({
           userId: user._id,
           profilePic: file.secure_url
         })
@@ -41,7 +40,7 @@ const Edit  = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={<Button>Edit Profile Pic</Button>}
+        trigger={<Button style={{ backgroundColor:"#008ae6", color:"white", marginTop:'5px', borderStyle: "outset" }}>Edit Profile Pic</Button>}
         >
         <Modal.Header>Select Profile Pic</Modal.Header>
         <Modal.Content image>

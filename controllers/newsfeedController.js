@@ -11,5 +11,13 @@ module.exports = {
             .catch(err => {
             res.json(err);
             });
-        }
+        }, 
+     getById: function(req,res){
+        console.log(req.params.id)
+        db.Post
+        .find({userId: req.params.id})
+        .populate("userId")
+        .then(DBpost => res.json(DBpost))
+        .catch(err => res.status(422).json(err));
     }
+}

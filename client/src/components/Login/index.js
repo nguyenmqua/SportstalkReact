@@ -7,8 +7,8 @@ const Login = () => {
   const { userData, handleInputChange, handleLogin, loginFailureMessage } = useContext(UserContext);
 
   return (
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-    <Grid.Column style={{ maxWidth: 450 }}>
+    <Grid textAlign='center' style={{ height: '100vh', margin:"10px"  }} verticalAlign='middle'>
+    <Grid.Column style={{ maxWidth: 450, paddingRight:"10px"  }}>
       <Header as='h2' color='blue' textAlign='center'>
          Log-in to your account
       </Header>

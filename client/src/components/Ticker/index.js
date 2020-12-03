@@ -13,7 +13,7 @@ const SportsTicker = () =>{
     }, [])
   
     return articles ? (
-      <p style={{ whiteSpace: "nowrap" }}>{articles.join("++++++")}+++++++</p>
+      <p style={{ whiteSpace: "nowrap", color:"#008ae6" }}>{articles.join("++++++")}+++++++</p>
     ) : (
       <p style={{ visibility: "hidden" }}>Placeholder</p>
     );

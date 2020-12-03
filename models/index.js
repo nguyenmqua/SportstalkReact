@@ -3,5 +3,6 @@ module.exports = {
   Post: require("./Post"),
   Comments: require("./Comments"),
   ProfilePic: require("./ProfilePic"),
-  Bets: require("./Bets")
+  Bets: require("./Bets"),
+  Notifications: require("./Notifications")
 };

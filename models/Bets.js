@@ -1,10 +1,9 @@
+const e = require("express");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-
-const betSchema = new Schema({
-  sportTicket: { type: String, required: true },
+const betsSchema = new Schema({
+  sportTicket: { type: Array },
   createdAt: { type: Date,
       default: Date.now()},
   userId: 
@@ -13,10 +12,34 @@ const betSchema = new Schema({
     ref: "Users",
     required: true
     },
-    competitor:{type: String}
+  competitor:{
+    type: Schema.Types.ObjectId,
+    ref: "Users"
+    },
+  winner:{
+      type: Schema.Types.ObjectId,
+      ref: "Users"
+      },
+  updater:{
+      type: Schema.Types.ObjectId,
+      ref: "Users"
+      },
+  wager:{type: Number},
+  approval: {
+    type:Boolean,
+    default: false
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  update: {
+    type:Boolean,
+    default: false
+  }
 });
 
-const Bet = mongoose.model("Bet", betSchema);
+const Bets = mongoose.model("Bets", betsSchema);
 
 
-module.exports = Bet;
+module.exports = Bets;

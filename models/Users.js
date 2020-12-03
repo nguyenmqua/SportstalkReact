@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Notifications = require('./Notifications');
 
 const { Schema } = mongoose;
 
@@ -50,7 +51,19 @@ const usersSchema = new Schema({
     type: String,    
     default: "https://res.cloudinary.com/sportstalk/image/upload/t_media_lib_thumb/v1606089802/download_vlvnep.jpg",
     required: true
+  },
+  sportTicket: [
+    {
+    type: Schema.Types.ObjectId,    
+    ref: "Bets"
   }
+  ],
+  notifications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Notifications"
+    }
+  ]
 });
 
 usersSchema.methods.generateHash = (password) => {

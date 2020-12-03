@@ -8,7 +8,10 @@ const sports = require("./sports");
 const profile = require("./profile")
 const sportsNews = require("./sportsnews")
 const usersdata  = require("./usersdata")
-
+const bets  = require("./bets")
+const notifications = require("./notifications")
+const userbet = require("./userbet")
+const results = require("./results.js")
 
 router.use("/post", post);
 router.use("/newsfeed", newsfeed);
@@ -18,6 +21,10 @@ router.use("/sportsdata", sports);
 router.use("/profile", profile);
 router.use("/sportsnews",sportsNews)
 router.use("/usersdata",usersdata)
+router.use("/bets",bets)
+router.use("/results",results)
+router.use("/userbet", userbet)
+router.use("/notifications", notifications)
 
 
 module.exports = router;

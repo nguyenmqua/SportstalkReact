@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  FormText,
-  Alert,
-} from 'reactstrap';
+import { Button, Form, Message, Input, Grid,Header, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/UserContext';
-import { Button, Form } from 'semantic-ui-react'
 
 const Signup = () => {
   const {
@@ -37,7 +33,7 @@ const Signup = () => {
     const length = userData.firstname.length;
     if (length === 0) {
       setValidFirstName(false);
-      setErrorMessage({ ...errorMessage, firstname: '' });
+      setErrorMessage({ ...errorMessage, firstname: null });
     } else if (length < 3) {
       setValidFirstName(false);
       setErrorMessage({
@@ -46,7 +42,7 @@ const Signup = () => {
       });
     } else {
       setValidFirstName(true);
-      setErrorMessage({ ...errorMessage, firstname: '' });
+      setErrorMessage({ ...errorMessage, firstname: null });
     }
   };
   // make sure firstname is at least 3 characters
@@ -54,16 +50,17 @@ const Signup = () => {
     const length = userData.lastname.length;
     if (length === 0) {
       setValidLastName(false);
-      setErrorMessage({ ...errorMessage, lastname: '' });
+      setErrorMessage({ ...errorMessage, lastname: null });
+
     } else if (length < 3) {
       setValidLastName(false);
       setErrorMessage({
         ...errorMessage,
-        lastname: 'First Name should be at least 3 characters.',
+        lastname: 'Last Name should be at least 3 characters.',
       });
     } else {
       setValidLastName(true);
-      setErrorMessage({ ...errorMessage, lastname: '' });
+      setErrorMessage({ ...errorMessage, lastname: null });
     }
   };
 
@@ -76,7 +73,7 @@ const Signup = () => {
     const length = userData.email.length;
     if (length === 0) {
       setValidEmail(false);
-      setErrorMessage({ ...errorMessage, email: '' });
+      setErrorMessage({ ...errorMessage, email: null });
     } else if (!valid) {
       setValidEmail(false);
       setErrorMessage({
@@ -85,7 +82,7 @@ const Signup = () => {
       });
     } else {
       setValidEmail(true);
-      setErrorMessage({ ...errorMessage, email: '' });
+      setErrorMessage({ ...errorMessage, email: null });
     }
   };
 
@@ -94,7 +91,7 @@ const Signup = () => {
     const length = userData.username.length;
     if (length === 0) {
       setValidUserName(false);
-      setErrorMessage({ ...errorMessage, username: '' });
+      setErrorMessage({ ...errorMessage, username: null });
     } else if (length < 5) {
       setValidUserName(false);
       setErrorMessage({
@@ -103,7 +100,7 @@ const Signup = () => {
       });
     } else {
       setValidUserName(true);
-      setErrorMessage({ ...errorMessage, username: '' });
+      setErrorMessage({ ...errorMessage, username: null });
     }
   };
 
@@ -116,7 +113,7 @@ const Signup = () => {
     const length = userData.password.length;
     if (length === 0) {
       setValidPassword(false);
-      setErrorMessage({ ...errorMessage, password: '' });
+      setErrorMessage({ ...errorMessage, password: null });
     } else if (!valid) {
       setValidPassword(false);
       setErrorMessage({
@@ -125,7 +122,7 @@ const Signup = () => {
       });
     } else {
       setValidPassword(true);
-      setErrorMessage({ ...errorMessage, password: '' });
+      setErrorMessage({ ...errorMessage, password: null });
     }
   };
 
@@ -133,13 +130,13 @@ const Signup = () => {
   const checkConfirmPassword = () => {
     if (confirmPassword.length === 0) {
       setIsConfirmed(false);
-      setErrorMessage({ ...errorMessage, confirmPassword: '' });
+      setErrorMessage({ ...errorMessage, confirmPassword: null });
     } else if (
-      userData.password !== '' &&
+      userData.password !== null &&
       userData.password === confirmPassword
     ) {
       setIsConfirmed(true);
-      setErrorMessage({ ...errorMessage, confirmPassword: '' });
+      setErrorMessage({ ...errorMessage, confirmPassword: null });
     } else {
       setIsConfirmed(false);
       setErrorMessage({
@@ -150,34 +147,52 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2 className="loginTitle">Signup</h2>
-      <hr />
-      {failureMessage ? <Alert type="danger">{failureMessage}</Alert> : <p></p>}
-      <Form size="small">
-          <FormText><p className ="text-danger">{errorMessage['firstname']}</p></FormText>
-            <Form.Input
+    <Grid textAlign='center' style={{ height: '100vh', margin:"10px"  }} verticalAlign='top'>
+    <Grid.Column style={{ maxWidth: 450, paddingRight:"10px"  }}>
+      <Header as='h2' color='blue' textAlign='center'>
+         Welcome, signup.
+      </Header>
+      <Form>
+        <Segment>
+          <Header as="h5" color="red">{failureMessage}</Header>
+            <Form.Field
+            control={Input}
             type="text"
             name="firstname"
             id="firstname"
-            placeholder="firstname"
+            placeholder="First Name"
             value={userData.firstname}
             onChange={handleInputChange}
             onBlur={checkFirstname}
             valid={validFirstName.toString()}
-            />
-          <FormText><p className ="text-danger">{errorMessage['lastname']}</p></FormText>
-          <Form.Input 
+            error={errorMessage['firstname']}
+          />
+          <Form.Field
+            control={Input}
             type="text"
             name="lastname"
             id="lastname"
-            placeholder="Last Name"
+            placeholder="Last Name "
             value={userData.lastname}
             onChange={handleInputChange}
             onBlur={checkLastname}
-            valid={validLastName.toString()}  />
-          <FormText><p className ="text-danger">{errorMessage['email']}</p></FormText>
-          <Form.Input 
+            valid={validLastName.toString()}
+            error={errorMessage['lastname']}            
+          />
+          <Form.Field
+            control={Input}
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            value={userData.username}
+            onChange={handleInputChange}
+            onBlur={checkUsername}
+            valid={validUserName.toString()}
+            error={errorMessage['username']}            
+          />
+          <Form.Field
+            control={Input}
             type="email"
             name="email"
             id="email"
@@ -185,57 +200,53 @@ const Signup = () => {
             value={userData.email}
             onChange={handleInputChange}
             onBlur={checkEmail}
-            valid={validEmail.toString()}/>
-          <FormText><p className ="text-danger">{errorMessage['username']}</p></FormText>           
-          <Form.Input 
-            type="text"
-            name="username"
-            id="username"
-            placeholder="username"
-            value={userData.username}
-            onChange={handleInputChange}
-            onBlur={checkUsername}
-            valid={validUserName.toString()} />
-          <FormText><p className ="text-danger">{errorMessage['password']}</p></FormText>
-          <Form.Input 
+            valid={validEmail.toString()}
+            error={errorMessage['email']}    
+          />
+          <Form.Field
             type="password"
             name="password"
             id="password"
-            placeholder="password"
+            placeholder="Password"
             value={userData.password}
             onChange={handleInputChange}
             onBlur={checkPassword}
-            valid={validPassword.toString()} />
-          <FormText><p className ="text-danger">{errorMessage['confirmPassword']}</p></FormText>
-          <Form.Input 
-            type="password"
-            name="password"
-            id="confirmPassword"
-            placeholder="confirm password"
-            value={confirmPassword}
-            onChange={handleConfirmPassword}
-            onKeyUp={checkConfirmPassword}
-            valid={isConfirmed.toString()} />  
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
+            valid={validPassword.toString()}
+            control={Input}            
+            error={errorMessage['password']}
+          />
+          <Form.Field
+             type="password"
+             name="password"
+             control={Input}
+             id="confirmPassword"
+             placeholder="confirm password"
+             value={confirmPassword}
+             onChange={handleConfirmPassword}
+             onKeyUp={checkConfirmPassword}
+             valid={isConfirmed.toString()} 
+             error={errorMessage['confirmPassword']}
+          />
         {validFirstName &&
         validLastName &&
         validEmail &&
         validUserName &&
-        validPassword &&
-        isConfirmed ? (
-          <Button onClick={handleSignup} color="green" block="true"> 
+        validPassword  ? (
+          <Button onClick={handleSignup} color="green" compact >
             Signup
           </Button>
         ) : (
-          <Button onClick={handleSignup} color="red" block ="true" disabled>
+          <Button  color="red" compact disabled>
             Signup
           </Button>
         )}
         <p className="signupLink">
           <Link to="/login">already have an account? Sign in here</Link>
         </p>
-    </Form>
-    </div>
+        </Segment>
+      </Form>
+      </Grid.Column>
+  </Grid>
   );
 };
 

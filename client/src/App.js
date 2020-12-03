@@ -3,16 +3,17 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Edit from "./components/Edit"
 import API from './utils/API';
 import Newsfeed from './pages/Newsfeed';
-import Post from './pages/Post';
 import Auth from './pages/Auth';
 import NoMatch from './pages/NoMatch';
-import Message from "./pages/Message"
+import Wager from "./pages/Wager"
 import TopNav from './components/TopNav';
-import { Container } from 'reactstrap';
 import UserContext from './utils/UserContext';
 import Comment from "./components/Comments"
 import Bet from "./components/Bet"
-
+import Notifications from "./components/Notifications"
+import Member from "./pages/Member"
+import UserPost from "./components/UserPost"
+import UpdateResult from './components/UpdateResults'
 
 const App = () => {
   const [userData, setUserData] = useState({
@@ -24,11 +25,28 @@ const App = () => {
   });
   const [loggedIn, setLoggedin] = useState(false);
   const [user, setUser] = useState(null);
-  const [failureMessage, setFailureMessage] = useState(null);
+  const [failureMessage, setFailureMessage] = useState();
   const [loginFailureMessage, setLoginFailureMessage] = useState("")
+  const [notifications, setNotifications] = useState([])
+  const [AllPost, setAllPost] = useState([])
+  const [Post, setPost] = useState("")
+
+
   useEffect(() => {
     isLoggedIn();
   }, []);
+
+  const deleteNotifications = (id) =>{
+    API.deleteNotifications(id)
+      .then( 
+        API.getNotifications(user._id)
+        .then(res=>{
+          console.log(res.data)
+          setNotifications(res.data)
+        })
+      )
+      .catch(err=> console.log(err))
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -75,7 +93,10 @@ const App = () => {
         API.signup(data)
           .then((user) => {
             if (user.data === 'email is already in use') {
-              alert('Email already in use.');
+              setFailureMessage('Email already in use.');
+            }
+            if (user.data === 'user already exists') {
+              setFailureMessage('User already exists. Choose another username.');
             }
             if (user.data.loggedIn) {
               if (user.data.loggedIn) {
@@ -98,12 +119,25 @@ const App = () => {
     }
   };
 
+  const loadPost =() => {
+    API.newsfeed()
+    .then(res => {
+        setAllPost(res.data)
+    })
+    .catch(err => console.log(err))
+}
+
   const isLoggedIn = () => {
     if (!loggedIn) {
       API.isLoggedIn().then((user) => {
         if (user.data.loggedIn) {
           setLoggedin(true);
           setUser(user.data.user);
+      API.getNotifications(user.data.user._id)
+          .then(res=>{
+            console.log(res.data)
+            setNotifications(res.data)
+          })
         } else {
           console.log(user.data.message);
         }
@@ -119,9 +153,29 @@ const App = () => {
         setUser(null);
       });
     }
-  };
+  }; 
 
-  
+  const handleUserBtnClick = async (e) => {
+    try {
+      const res = await API.postPost({
+        post: Post,
+        userId: user
+
+      })
+      loadPost()
+    } catch (error) {
+      console.log(
+        "There was an error processing your results, please try again",
+        error
+      );
+    }
+  }
+
+  function deletePost(id) {
+    API.deletePost(id)
+      .then(res => loadPost())
+      .catch(err => console.log(err));
+  }
 
   const contextValue = {
     userData,
@@ -129,11 +183,18 @@ const App = () => {
     user,
     failureMessage,
     loginFailureMessage,
+    notifications,
+    AllPost,
     handleInputChange,
     handleLogin,
     handleSignup,
     logout,
     setUser,
+    deleteNotifications,
+    loadPost,
+    setPost,
+    handleUserBtnClick,
+    deletePost
   };
 
   return (
@@ -141,7 +202,6 @@ const App = () => {
       <Router>
         <div>
           <TopNav />
-          <Container>
             <Switch>
               <Route exact path="/" component={Newsfeed} />
               <Route
@@ -154,15 +214,17 @@ const App = () => {
                 path="/signup"
                 render={() => <Auth action="signup" />}
               />
-              <Route exact path="/posts" component={Post} />
               <Route exact path="/newsfeed" component={Newsfeed} />
-              <Route exact path="/post/:id" component={Message} />
+              <Route exact path="/member/:id" component={Member} />
+              <Route exact path="/wager/:id" component={Wager} />
               <Route render={NoMatch} />
               <Comment />
               <Edit />
               <Bet />
+              <Notifications />
+              <UserPost />
+              <UpdateResult />
             </Switch>
-          </Container>
         </div>
       </Router>
     </UserContext.Provider>

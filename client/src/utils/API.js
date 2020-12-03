@@ -29,6 +29,11 @@ export default {
     return axios.get("/api/newsfeed")
   },
 
+  newsfeedByID: function(id){
+    
+    return axios.get("/api/newsfeed/"+id)
+  },
+
   deletePost: function(id) {
     return axios.delete("/api/post/" + id);
   },
@@ -65,11 +70,40 @@ export default {
     return axios.get("/api/usersdata/"+id)
   },
 
-
   postBet(data){
     console.log(data)
     return axios.post("/api/bets", data )
-  }
+  },
 
+  getBet(id){
+    return axios.get("/api/bets/"+id)
+  },
+
+  updateBet(id){
+    return axios.put("/api/bets/", id)
+  },
+
+  getUserBet(id){
+    
+    return axios.get("/api/userbet/"+id)
+  },
+ 
+  settleBet(data){
+    console.log(data)
+    return axios.put("/api/userbet",data)
+  },
+  getNotifications(id){
+    
+    return axios.get("/api/notifications/" + id)
+  },
+
+  deleteNotifications(id){
+    
+    return axios.delete("/api/notifications/" + id)
+  },
+
+  completeBet(id){
+    return axios.put("/api/results",id)
+  }
   
 };

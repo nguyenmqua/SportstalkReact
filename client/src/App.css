@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+  }
+
+  #myPostCard {
+    padding-left: 15px;
+    color: red 
+  }
+
+  @media (max-width: 600px) {
+    #myPostCard {
+      padding:0px;
+    }
+  }
+
+  

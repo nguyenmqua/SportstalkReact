@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import UserContext from '../../utils/UserContext';
+import React, { useState, useEffect} from 'react';
 import { Button, Modal,Card, Table } from 'semantic-ui-react'
 import API from '../../utils/API';
 
@@ -8,16 +7,6 @@ const Odds = () => {
     const [NFLgames, setNFLgames] = useState([])
     const [pickEm, setPickEm] = useState({})
 
-
-      
-
-    const handleChange = (event, {name, value}) => {
-       setPickEm({...pickEm, [name]: value})
-    }
-
-    const handleSubmit = () => {
-        console.log(pickEm)
-    }
 
     useEffect(()=>{
         // API.getNFL()
@@ -32,7 +21,7 @@ const Odds = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={<Button>Sportsbooks</Button>}
+        trigger={<Button style={{ backgroundColor:"#008ae6", color:"white", marginTop:'5px', borderStyle: "outset" }}>Sportsbooks</Button>}
         >
         <Modal.Header>Compare Sportsbook</Modal.Header>
         <Modal.Content scrolling>
@@ -77,10 +66,7 @@ const Odds = () => {
         </Modal.Content>
         <Modal.Actions>
           <Button negative onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button positive onClick={handleSubmit}>
-            Submit
+            Close
           </Button>
         </Modal.Actions>
         
