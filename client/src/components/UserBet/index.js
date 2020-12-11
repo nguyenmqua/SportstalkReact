@@ -10,10 +10,10 @@ const UserBet = ({allBets}) =>{
     return (
         
         <> 
-        <Grid stackable>
+        <Grid  centered columns={4} stackable>
             <Grid.Row>
                 {allBets.map(bet=>(
-                <Grid.Column computer={4} mobile={1}>
+                <Grid.Column>
                     {bet.completed===false ? ( 
                         <Segment>
                             <Grid centered divided="vertically" columns={2}>

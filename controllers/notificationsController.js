@@ -23,7 +23,9 @@ module.exports = {
             populate: {path: "winner"}
         })
         .populate('userId')
-        .then(DBdata=> res.json(DBdata))
+        .then(DBdata=> {console.log(DBdata)
+            res.json(DBdata)}
+            )
         .catch(err=>res.status(422).json(err))
     },
     remove: function(req,res){

@@ -27,7 +27,7 @@ function Newsfeed(){
 
     return(
         <>
-        {/* {loggedIn ? ( */}
+        {loggedIn ? (
             
             <Grid stackable columns="equal">
                   
@@ -97,9 +97,9 @@ function Newsfeed(){
                    
                 </Grid.Column>
             </Grid>
-        {/* ) : (          
+      ) : (          
         <Login />       
-        )}      */}
+        )}   
     </>
     )
 }

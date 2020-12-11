@@ -1,15 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 * {
     box-sizing: border-box;
   }
 
-  #myPostCard {
-    padding-left: 15px;
-    color: red 
+  #headers {
+    font-family: 'Lobster', cursive;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+
+  #menuButton{
+    margin:10px;
+    background-color: white;
+    color: #1F8BFF;
   }
 
   @media (max-width: 600px) {
-    #myPostCard {
-      padding:0px;
+    #menuButton{
+      margin:0px;
+    
     }
   }
 

@@ -162,6 +162,7 @@ const App = () => {
         userId: user
 
       })
+      setPost("")
       loadPost()
     } catch (error) {
       console.log(

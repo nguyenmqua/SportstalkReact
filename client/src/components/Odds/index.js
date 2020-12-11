@@ -21,9 +21,9 @@ const Odds = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={<Button style={{ backgroundColor:"#008ae6", color:"white", marginTop:'5px', borderStyle: "outset" }}>Sportsbooks</Button>}
+        trigger={<Button id="headers" color="blue" style={{fontSize: "20px"}}>Compare Sportsbooks</Button>}
         >
-        <Modal.Header>Compare Sportsbook</Modal.Header>
+        <Modal.Header id="headers" style={{fontSize: "50px"}}>Compare Sportsbook</Modal.Header>
         <Modal.Content scrolling>
             <Modal.Description>
             <Card.Group>
@@ -35,9 +35,9 @@ const Odds = () => {
                         <Table celled structured>
                             <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell rowSpan={game.sites_count}>SportBook Sites</Table.HeaderCell>
-                                    <Table.HeaderCell colSpan='2'>Points Spread</Table.HeaderCell>
-                                    <Table.HeaderCell colSpan='2'>Odds</Table.HeaderCell> 
+                                    <Table.HeaderCell id="headers" style={{fontSize: "18px"}}rowSpan={game.sites_count}>SportBook Sites</Table.HeaderCell>
+                                    <Table.HeaderCell id="headers" style={{fontSize: "18px"}}colSpan='2'>Points Spread</Table.HeaderCell>
+                                    <Table.HeaderCell id="headers" style={{fontSize: "18px"}}colSpan='2'>Odds</Table.HeaderCell> 
                                 </Table.Row>
                                 <Table.Row>
                                     <Table.HeaderCell>{game.teams[0]}</Table.HeaderCell>
