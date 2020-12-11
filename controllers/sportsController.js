@@ -1,7 +1,7 @@
 const axios = require('axios')
 
-// const api_key = process.argv[2] || '095b2dca8cd6fa9a17b303b8694d3362'
-const api_key = process.argv[2] || '23117c580c41f8c13a4ba8b100f9ee7e'
+const api_key = process.argv[2] || '095b2dca8cd6fa9a17b303b8694d3362'
+// const api_key = process.argv[2] || '23117c580c41f8c13a4ba8b100f9ee7e'
 
 const sport_key = 'americanfootball_nfl' // use the sport_key from the /sports endpoint below, or use 'upcoming' to see the next 8 games across all sports
 

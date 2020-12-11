@@ -13,7 +13,7 @@ const Notifications = () => {
         {notifications.length > 0 ? (
         <Feed style={{ height: '100vh', margin:"5px"  }}>
         {notifications && notifications.map(notification =>(
-          <Feed.Event style={{ height: '100vh', margin:"5px"  }} key = {notification._id}>
+          <Feed.Event key = {notification._id}>
                     <Feed.Content>
                     <Popup content='Close' trigger={ <Icon color="red" onClick={()=>deleteNotifications(notification._id)}fitted name='close' />} />
                         <Feed.Label>

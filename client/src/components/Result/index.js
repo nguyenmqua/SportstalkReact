@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from '../../utils/UserContext'
-import {  Header, Card, Grid} from 'semantic-ui-react'
-import UpdateResults from '../UpdateResults';
+import { Card, Grid} from 'semantic-ui-react'
 
 const Results = ({allBets}) =>{
     const {user} = useContext(UserContext)
@@ -12,7 +11,7 @@ const Results = ({allBets}) =>{
         {allBets.map(bet => (
             <>
             {bet.completed ===true? (
-                <Grid.Column >
+                <Grid.Column style={{marginTop:"10px"}}>
                     <Card>
                         <Card.Content>
                             <Card.Header>ticket # {bet._id}</Card.Header>

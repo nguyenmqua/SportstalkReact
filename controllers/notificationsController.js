@@ -31,5 +31,11 @@ module.exports = {
         .findById({ _id: req.params.id })
         .then(dbModel => dbModel.remove())
         .catch(err => res.status(422).json(err));
+    },
+    create: function(req,res){
+        db.Notifications
+        .create(req.body)
+        .then(db=>res.json(db))
+        .catch(err => res.status(422).json(err));
     }
 }

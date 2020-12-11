@@ -1,7 +1,7 @@
 const express = require('express');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5050;
 // const colors = require('colors');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
