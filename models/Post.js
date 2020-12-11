@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   post: { type: String, required: true },
-  createdAt: { type: Date,
-      default: Date.now()},
+  createdAt: { type: Date, default: Date.now()},
   userId: 
     {
     type: Schema.Types.ObjectId,    
