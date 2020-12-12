@@ -21,15 +21,9 @@ const Odds = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-<<<<<<< HEAD
         trigger={<Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Compare Sportsbooks</Button>}
         >
         <Modal.Header id="headers" style={{fontSize: "50px" ,backgroundColor: 'grey'}}>Compare Sportsbook</Modal.Header>
-=======
-        trigger={<Button id="headers" color="blue" style={{fontSize: "20px"}}>Compare Sportsbooks</Button>}
-        >
-        <Modal.Header id="headers" style={{fontSize: "50px"}}>Compare Sportsbook</Modal.Header>
->>>>>>> 77a999ff57e290f71364717ae27c21eb50b4a5d4
         <Modal.Content scrolling>
             <Modal.Description>
             <Card.Group>

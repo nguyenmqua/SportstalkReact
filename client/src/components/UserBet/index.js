@@ -13,7 +13,7 @@ const UserBet = ({allBets}) =>{
         <Grid  centered columns={4} stackable>
             <Grid.Row>
                 {allBets.map(bet=>(
-                <Grid.Column>
+                <Grid.Column key={bet._id}>
                     {bet.completed===false ? ( 
                         <Segment>
                             <Grid centered divided="vertically" columns={2}>

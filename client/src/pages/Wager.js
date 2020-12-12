@@ -39,15 +39,18 @@ function Wager(props){
         .catch(err => console.log(err))
         }
 
-    
-      const handleFinalApporval =() =>{
-        API.completeBet({id:id})
+      const handleFinalApporval =(competitor,complete, type) =>{
+        API.completeBet({
+          id:id,
+          userId:user._id,
+          competitor: competitor,
+          complete: complete,
+          type: type
+        })
         .then(window.location.href ="/")
       }
 
-      const handleEdit = () =>{
-        console.log("edit")
-      }
+    
 
     return(
       <Card.Group centered>
@@ -102,10 +105,10 @@ function Wager(props){
             <Card.Content extra>
               <Card.Header>Winner: {currentWager.winner.username}</Card.Header>
             <div className='ui two buttons'>
-              <Button onClick={handleFinalApporval} compact color='green'>
+              <Button onClick={()=>handleFinalApporval(currentWager.updater._id, true, "accept winner")} compact color='green'>
                 Approve 
               </Button>
-              <Button onClick={handleEdit} compact color='red'>
+              <Button onClick={()=>handleFinalApporval(currentWager.updater._id, false, "decline winner")} compact color='red'>
                 Decline 
               </Button>
             </div>
