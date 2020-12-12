@@ -22,6 +22,7 @@ module.exports = {
         db.Bets
         .findById(req.params.id)
         .populate("userId")
+        .populate("updater")
         .populate("winner")
         .then(DBpost => res.json(DBpost))
         .catch(err => res.status(422).json(err));

@@ -237,10 +237,18 @@ const App = () => {
     try {
       const res = await API.postPost({
         post: Post,
+<<<<<<< HEAD
         userId: user,
       });
       setPost("");
       loadPost();
+=======
+        userId: user
+
+      })
+      setPost("")
+      loadPost()
+>>>>>>> 77a999ff57e290f71364717ae27c21eb50b4a5d4
     } catch (error) {
       console.log(
         "There was an error processing your results, please try again",
