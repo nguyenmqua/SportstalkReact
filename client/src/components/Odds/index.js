@@ -1,19 +1,19 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { Button, Modal,Card, Table } from 'semantic-ui-react'
 import API from '../../utils/API';
+import UserContext from "../../utils/UserContext"
 
 const Odds = () => {
     const [Open, setOpen] = useState(false)
     const [NFLgames, setNFLgames] = useState([])
-    const [pickEm, setPickEm] = useState({})
-
-
+    const {footballColor} = useContext(UserContext)
+  
     useEffect(()=>{
-        // API.getNFL()
-        // .then(res => {
-        //     console.log(res.data)
-        //     setNFLgames(res.data)
-        //     })
+        API.getNFL()
+        .then(res => {
+            console.log(res.data)
+            setNFLgames(res.data)
+            })
     }, []);
     return(
         <>
@@ -21,17 +21,17 @@ const Odds = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={<Button id="headers" color="blue" style={{fontSize: "20px"}}>Compare Sportsbooks</Button>}
+        trigger={<Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Compare Sportsbooks</Button>}
         >
-        <Modal.Header id="headers" style={{fontSize: "50px"}}>Compare Sportsbook</Modal.Header>
+        <Modal.Header id="headers" style={{fontSize: "50px" ,backgroundColor: 'grey'}}>Compare Sportsbook</Modal.Header>
         <Modal.Content scrolling>
             <Modal.Description>
             <Card.Group>
             {NFLgames.map(game=>( 
                 
-                <Card fluid color='green' key={game.teams[0]+game.teams[1]}>
+                <Card fluid style={{color:footballColor(game.teams[1]).primary, backgroundColor:footballColor(game.teams[0]).secondary}} key={game.teams[0]+game.teams[1]}>
                     <Card.Content>
-                        <Card.Header color="blue">{game.teams[0] + " vs " + game.teams[1]}</Card.Header>
+                        <Card.Header style={{color:footballColor(game.teams[0]).primary, backgroundColor:footballColor(game.teams[0]).secondary}}>{game.teams[0] + " vs " + game.teams[1]}</Card.Header>
                         <Table celled structured>
                             <Table.Header>
                                 <Table.Row>
@@ -40,10 +40,10 @@ const Odds = () => {
                                     <Table.HeaderCell id="headers" style={{fontSize: "18px"}}colSpan='2'>Odds</Table.HeaderCell> 
                                 </Table.Row>
                                 <Table.Row>
-                                    <Table.HeaderCell>{game.teams[0]}</Table.HeaderCell>
-                                    <Table.HeaderCell>{game.teams[1]}</Table.HeaderCell>
-                                    <Table.HeaderCell>{game.teams[0]}</Table.HeaderCell>
-                                    <Table.HeaderCell>{game.teams[1]}</Table.HeaderCell>
+                                    <Table.HeaderCell style={{color:footballColor(game.teams[0]).primary, backgroundColor:footballColor(game.teams[0]).secondary}}>{game.teams[0]}</Table.HeaderCell>
+                                    <Table.HeaderCell style={{color:footballColor(game.teams[1]).primary, backgroundColor:footballColor(game.teams[1]).secondary}}>{game.teams[1]}</Table.HeaderCell>
+                                    <Table.HeaderCell style={{color:footballColor(game.teams[0]).secondary, backgroundColor:footballColor(game.teams[0]).primary}}>{game.teams[0]}</Table.HeaderCell>
+                                    <Table.HeaderCell style={{color:footballColor(game.teams[1]).secondary, backgroundColor:footballColor(game.teams[1]).primary}}>{game.teams[1]}</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>

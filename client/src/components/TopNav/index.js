@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import UserContext from "../../utils/UserContext";
 import SportsTicker from "../Ticker";
 import MenuNotifictions from "../MenuNotificaitons"
-import {  Menu, Grid,Image, Button } from "semantic-ui-react";
+import {  Menu, Grid,Image, Button, Icon } from "semantic-ui-react";
 
 const Navigation = () => {
-  const { loggedIn, logout, user} = useContext(UserContext);
+  const { loggedIn, logout, user,sidebarToggle} = useContext(UserContext);
   
   const userPage = () => {
     window.location.href = "/member/" + user._id;
@@ -31,15 +31,25 @@ const Navigation = () => {
         <Menu.Menu position="right">
         {loggedIn ? (
           <>
+         <Grid>
+           <Grid.Column only="computer">
             <Menu.Item fitted="vertically">
               <Button id="menuButton" content="Newsfeed" onClick={newsfeed} />
               <Button id="menuButton" content="My Accounts" onClick={userPage} />
               <Button id="menuButton" content="Log Out" onClick={logout} />
             </Menu.Item> 
-            <Grid>
+            </Grid.Column>
+            <Grid.Column only="tablet">
+            <Menu.Item fitted="vertically">
+              <Button id="menuButton" content="Newsfeed" onClick={newsfeed} />
+              <Button id="menuButton" content="My Accounts" onClick={userPage} />
+              <Button id="menuButton" content="Log Out" onClick={logout} />
+            </Menu.Item> 
+            </Grid.Column>
               <Grid.Column only="mobile">
                 <Menu.Item >
                   <MenuNotifictions />
+                  <Icon corner="top right" onClick={sidebarToggle} name="toggle down" size="big" />
                 </Menu.Item>
               </Grid.Column>
             </Grid>

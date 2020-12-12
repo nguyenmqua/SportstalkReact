@@ -132,7 +132,7 @@ function UpdateResults({bet}) {
                                         />
                                         </Form.Field>
                                     </Form>
-                                    <Button floated="right" compact content="Submit" onClick={()=>submitWinner(bet._id,bet.competitor._id)}  color="green" />
+                                    <Button floated="right" compact content="Submit" onClick={()=>submitWinner(bet._id,bet.userId._id)}  color="green" />
                                 </Card.Content>
                             </Card>
                      ):(<></>)} 

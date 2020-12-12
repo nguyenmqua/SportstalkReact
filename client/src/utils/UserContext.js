@@ -16,7 +16,9 @@ const UserContext = React.createContext({
   deleteNotifications: () => {},
   loadPost: () => {},
   setPost: ()=>{},
-  deletePost: ()=>{}
+  deletePost: ()=>{},
+  sidebarToggle: () =>{},
+  footballColor:() =>{}
 });
 
 export default UserContext;

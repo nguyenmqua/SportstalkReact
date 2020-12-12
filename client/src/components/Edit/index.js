@@ -40,7 +40,7 @@ const Edit  = () => {
         open={Open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
-        trigger={<Button id="headers" color="blue" style={{fontSize: "20px"}}>Edit Profile Pic</Button>}
+        trigger={<Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Edit Profile Pic</Button>}
         >
         <Modal.Header id="headers" style={{fontSize:"50px"}}>Select Profile Pic</Modal.Header>
         <Modal.Content image>

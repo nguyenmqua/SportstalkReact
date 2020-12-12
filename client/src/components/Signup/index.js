@@ -231,7 +231,9 @@ const Signup = () => {
         validLastName &&
         validEmail &&
         validUserName &&
-        validPassword  ? (
+        validPassword &&
+        isConfirmed
+         ? (
           <Button onClick={handleSignup} color="green" compact >
             Signup
           </Button>
