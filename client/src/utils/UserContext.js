@@ -9,6 +9,8 @@ const UserContext = React.createContext({
   post: {},
   notifications:{},
   AllPost:{},
+  Post: "",
+  loading: false,
   handleInputChange: () => {},
   handleLogin: () => {},
   handleSignup: () => {},
@@ -18,7 +20,8 @@ const UserContext = React.createContext({
   setPost: ()=>{},
   deletePost: ()=>{},
   sidebarToggle: () =>{},
-  footballColor:() =>{}
+  footballColor:() =>{},
+  setLoading: () => {}
 });
 
 export default UserContext;

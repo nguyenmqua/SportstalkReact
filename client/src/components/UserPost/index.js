@@ -8,12 +8,12 @@ const UserPost = ({ AllPost }) => {
   const { user, deletePost } = useContext(UserContext);
 
   return (
-    <Grid style={{ backgroundColor: "#002244" }} columns={4} centered stackable>
+    <Grid style={{ backgroundColor: "#002244" }} columns={2} centered stackable>
       <Grid.Row>
         <Grid.Column>
           {AllPost &&
             AllPost.map((post) => (
-              <Card style={{ backgroundColor: "#d3d3d3" }} centered>
+              <Card key={post._id} style={{ backgroundColor: "#d3d3d3" }} centered>
                 <Card.Content>
                   <Icon
                     color="red"

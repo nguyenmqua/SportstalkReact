@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import UserContext from '../utils/UserContext';
 import Login from "../components/Login"
-import { Card, Icon, Image,Grid, Popup, Segment, Header } from 'semantic-ui-react'
+import { Card, Icon, Image,Grid, Popup, Segment, Header, Dimmer, Loader } from 'semantic-ui-react'
 import moment from 'moment'
 import Post from "../components/Post"
 import Comments from "../components/Comments"
@@ -19,7 +19,7 @@ const style = {
   }
 
 function Newsfeed(){   
-    const { loggedIn, user, loadPost, AllPost, deletePost} = useContext(UserContext);
+    const { loggedIn, user, loadPost, AllPost, deletePost,loading} = useContext(UserContext);
    
     useEffect(() => {
       loadPost()
@@ -30,8 +30,14 @@ function Newsfeed(){
         {loggedIn ? (
             
             <Grid stackable columns="equal">
-                  
+               {loading ? (
+                <Dimmer active>
+                   <Loader content='Loading' />
+                 </Dimmer>
+               ):(
+                <>
             <Grid.Column>
+                 <Grid.Row>
                     <Segment basic >
                         <Card>
                             <Odds />
@@ -39,6 +45,7 @@ function Newsfeed(){
                             <Bet />
                         </Card>
                     </Segment>
+                </Grid.Row>
                 </Grid.Column>
                     
                 <Grid.Column width ={8}>
@@ -56,7 +63,7 @@ function Newsfeed(){
                                             <Card fluid color="blue" key={post._id} style={style.h1}>
                                                 <Card.Content>
                                                     <Popup
-                                                        content = {"Member Since "+  moment(post.userId.creatAt).format('MMMM  YYYY')}
+                                                        content = {"Member Since "+  moment(post.userId.createdAt).format('MMMM  YYYY')}
                                                         header={post.userId.username}
                                                         trigger={ <Image floated="left"  size='tiny' circular src={post.userId.profilePic}/>}
                                                     />
@@ -64,7 +71,7 @@ function Newsfeed(){
                                                         <h4>{post.userId.username}</h4>   
                                                     </Card.Header> 
                                                     <Card.Meta>
-                                                        {moment(post.createdAt).startOf("hour").fromNow()} 
+                                                        {moment(post.createdAt).fromNow()} 
                                                     </Card.Meta>
                                                     <Card.Description>
                                                         {user && user._id === post.userId._id ? (
@@ -96,6 +103,8 @@ function Newsfeed(){
                         </Card>
                    
                 </Grid.Column>
+                </>
+                )}   
             </Grid>
       ) : (          
         <Login />       

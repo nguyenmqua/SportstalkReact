@@ -20,17 +20,22 @@ const Results = ({allResults}) =>{
                                 {bet.userId.username} wagered ${bet.wager} on the {bet.sportTicket[0][1]} at {bet.sportTicket[0][2]} in the {bet.sportTicket[0][0]} game.
                             </Card.Description>
                         </Card.Content>
-                        {console.log(bet.winner._id)}
                         {bet.winner._id===user._id ? (
+                            <>
                         <Card.Content extra>
                                <Card.Header style={{color:"green"}}>Congrats! You won this wager for {bet.wager}. Good win {bet.winner.username}!</Card.Header>
-                                <Card.Meta>{moment(bet.createdAt).fromNow}</Card.Meta>
-                        </Card.Content>
+                        </Card.Content>                               
+                         <Card.Meta>{moment(bet.createdAt).fromNow}</Card.Meta>
+
+                        </>
+                        
                         ):(
+                            <>
                         <Card.Content extra>
                             <Card.Header style={{color: "red"}}>Sorry! You loss this wager for ${bet.wager}. {bet.winner.username} won this bet.</Card.Header>
-                            <Card.Meta>{moment(bet.createdAt).fromNow}</Card.Meta>
                         </Card.Content>
+                        <Card.Meta>{moment(bet.createdAt).fromNow}</Card.Meta>
+                        </>
                         )}                   
                     </Card>
                 </Grid.Column>                 

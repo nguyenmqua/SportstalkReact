@@ -18,18 +18,7 @@ https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=4391
 
 
 module.exports = {
-    // get: function(req,res){
-    //     axios.get('https://api.sportradar.us/nfl/official/trial/v5/en/games/2019/reg/schedule.xml?api_key=ekrngsngwg55bmp77jh9g8ya')
-    //     .then(response => {
-    //         console.log(response.data.title)
-    //         res.json(response.data.data);
-   
-    //     })
-    //     .catch(error => {
-    //         console.log('Error status SportsOdd', error.response.status)
-    //         console.log(error.response.data)
-    //     })
-    // },
+    
     get: function(req,res){
 
         axios.get('https://api.the-odds-api.com/v3/odds', {

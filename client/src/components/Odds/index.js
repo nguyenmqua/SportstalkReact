@@ -11,7 +11,6 @@ const Odds = () => {
     useEffect(()=>{
         API.getNFL()
         .then(res => {
-            console.log(res.data)
             setNFLgames(res.data)
             })
     }, []);

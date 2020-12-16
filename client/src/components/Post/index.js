@@ -5,7 +5,7 @@ import UserContext from '../../utils/UserContext';
 
 
 function Post(props) {
-  const { user, setPost, handleUserBtnClick } = useContext(UserContext);
+  const { user, setPost, handleUserBtnClick, Post} = useContext(UserContext);
   
   return (
       <> 
@@ -17,7 +17,7 @@ function Post(props) {
             </Card.Header>
             <Card.Description>
               <Form>
-                <Form.TextArea onChange={(e) => setPost(e.target.value)} placeholder='What sup?' />
+                <Form.TextArea onChange={(e) => setPost(e.target.value)} placeholder='What sup?'  value={Post}/>
                 <Form.Button floated="right" color="green" onClick ={handleUserBtnClick}>Post</Form.Button>
               </Form>
             </Card.Description>

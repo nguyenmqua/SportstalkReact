@@ -33,6 +33,7 @@ const App = () => {
   const [AllPost, setAllPost] = useState([]);
   const [Post, setPost] = useState("");
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false)
 
 
   useEffect(() => {
@@ -61,11 +62,13 @@ const App = () => {
       username: userData.username,
       password: userData.password,
     };
+    setLoading(true)
     if (userData.username && userData.password) {
       API.login(data)
         .then((user) => {
           if (user.data.loggedIn) {
              window.location.href = "/"
+             setLoading(false)
              setLoggedin(true);
             setUser(user.data.user);
             console.log("log in successful");
@@ -125,9 +128,11 @@ const App = () => {
   };
 
   const loadPost = () => {
+    setLoading(true)
     API.newsfeed()
       .then((res) => {
         setAllPost(res.data);
+        setLoading(false)
       })
       .catch((err) => console.log(err));
   };
@@ -270,6 +275,7 @@ const App = () => {
     loginFailureMessage,
     notifications,
     AllPost,
+    Post,
     handleInputChange,
     handleLogin,
     handleSignup,
@@ -282,6 +288,8 @@ const App = () => {
     deletePost,
     sidebarToggle,
     footballColor,
+    loading,
+    setLoading,
   };
 
   return (

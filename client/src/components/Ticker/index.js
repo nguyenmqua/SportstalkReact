@@ -21,10 +21,9 @@ const SportsTicker = () =>{
 
   function StockTicker() {
     return (
-      <></>
-      // <Ticker offset="run-in" speed={4}>
-      //   {() => <SportsTicker />}
-      // </Ticker>
+      <Ticker offset="run-in" speed={4}>
+        {() => <SportsTicker />}
+      </Ticker>
     );
   }
 

@@ -26,7 +26,6 @@ module.exports = {
     },
 
     update: function (req,res){
-        console.log(req.body)
         db.Bets
         .findOneAndUpdate({_id:req.body.sportTicket},{winner: req.body.winner, update: true, updater: req.body.updater},{new: true})
         .then(res=>db.Notifications.create

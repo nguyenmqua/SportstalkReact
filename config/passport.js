@@ -10,7 +10,6 @@ passport.use(
       },
       (err, user) => {
         if (err) {
-          console.log('something went wrong\n', err);
           return done(err);
         }
         if (!user) {

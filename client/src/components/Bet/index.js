@@ -8,6 +8,8 @@ import {
   Grid,
   Card,
   Input,
+  Dimmer, 
+  Loader
 } from "semantic-ui-react";
 import API from "../../utils/API";
 import SearchForm from "../../components/SearchForm";
@@ -22,6 +24,7 @@ const Bet = () => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [wager, setWager] = useState({});
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     loadNFL();
@@ -50,15 +53,18 @@ const Bet = () => {
   };
 
   const loadNFL = () => {
+    setLoading(true)
     API.getNFL().then((res) => {
-      console.log(res.data);
+      setLoading(false)
       setNFLgames(res.data);
     });
   };
 
   const loadUsers = () => {
+    setLoading(true)
     API.getUsers().then((res) => {
       setUsers(res.data);
+      setLoading(false)
     });
   };
 
@@ -66,16 +72,7 @@ const Bet = () => {
     setSearch(event.target.value);
   };
 
-  // const handleInputClick= (event) => {
-  //     console.log(search.length)
-  //     if (search.length >0){
-  //     API.getUser(search)
-  //     .then(res=>{
-  //         console.log(res.data[0]._id)
-  //         setCompetitor(res.data[0]._id)})
-  //     }
-  // }
-
+  
   const handleInputBet = (event, { name }) => {
     setWager(event.target.value);
   };
@@ -90,6 +87,13 @@ const Bet = () => {
           <Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Bet-a-Buddy</Button>
         }
       >
+          {loading ? (
+                <Dimmer active>
+                   <Loader content='Loading' />
+                 </Dimmer>
+               ):(
+                 <>
+        
         <Modal.Header id="headers" style={{fontSize: "50px"}}>Betting Odds</Modal.Header>
         <Modal.Content  style={{backgroundColor: "#002244" }} scrolling>
           <Modal.Description>
@@ -224,6 +228,7 @@ const Bet = () => {
             Cancel
           </Button>
         </Modal.Actions>
+        </>)}
       </Modal>
     </>
   );

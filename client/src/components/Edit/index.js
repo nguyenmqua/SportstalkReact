@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../../utils/UserContext';
-import { Button, Modal} from 'semantic-ui-react'
+import { Button, Modal, Dimmer, Loader} from 'semantic-ui-react'
 import API from '../../utils/API';
 import {Form, Input} from 'reactstrap'
 
@@ -30,6 +30,7 @@ const Edit  = () => {
           profilePic: file.secure_url
         })
         window.location.href = '/';
+        setLoading(false)
             
         }
 
@@ -42,6 +43,12 @@ const Edit  = () => {
         onOpen={() => setOpen(true)}
         trigger={<Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Edit Profile Pic</Button>}
         >
+         {loading ? (
+                <Dimmer active>
+                   <Loader content='Loading' />
+                 </Dimmer>
+               ):(
+                 <>
         <Modal.Header id="headers" style={{fontSize:"50px"}}>Select Profile Pic</Modal.Header>
         <Modal.Content image>
             <Modal.Description>
@@ -65,7 +72,7 @@ const Edit  = () => {
             Submit
           </Button>
         </Modal.Actions>
-        
+        </>)}
       </Modal>
     </>
     )
