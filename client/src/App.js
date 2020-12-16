@@ -241,8 +241,9 @@ const App = () => {
         post: Post,
         userId: user,
       });
-      setPost("");
       loadPost();
+      setPost("");
+      
     } catch (error) {
       console.log(
         "There was an error processing your results, please try again",
