@@ -13,7 +13,6 @@ module.exports = {
             });
         }, 
      getById: function(req,res){
-        console.log(req.params.id)
         db.Post
         .find({userId: req.params.id})
         .populate("userId")

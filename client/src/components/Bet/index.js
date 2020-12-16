@@ -28,79 +28,6 @@ const Bet = () => {
     loadUsers();
   }, []);
 
-  
-
-  // const footballColor = (team) =>{
-  //   switch(team) {
-  //     case "Arizona Cardinals":
-  //       return {primary: "#97233F", secondary: "#000000"}
-  //     case "Atlanta Falcons":
-  //       return {primary: "#A71930", secondary: "#000000"}
-  //     case "Baltimore Ravens":
-  //       return {primary:"#241773", secondary:"#000000"}
-  //     case "Buffalo Bills":
-  //       return {primary:"#00338D", secondary:"#C60C30"}
-  //     case "Carolina Panthers":
-  //       return {primary:"#0085CA", secondary:"#000000"}
-  //     case "Chicago Bears":
-  //       return {primary:"#C83803", secondary:"#0B162A"}
-  //     case "Cincinnati Bengals":
-  //       return {primary:"#FB4F14", secondary:"#000000"} 
-  //     case "Cleveland Browns":
-  //       return {primary:"#311D00", secondary:"#FF3C00"}
-  //     case "Dallas Cowboys":
-  //       return {primary:"#003594", secondary:"#869397"}
-  //     case "Denver Broncos":
-  //       return {primary:"#FB4F14", secondary:"#002244"}
-  //     case "Detriot Lions":
-  //         return {primary:"#0076B6", secondary:"#B0B7BC"}
-  //     case "Green Bay Packers":
-  //         return {primary:"#FFB612", secondary:"#203731"}
-  //     case "Houston Texans":
-  //         return {primary:"#03202F", secondary:"#A71930"}
-  //     case "Indianapolis Colts":
-  //         return {primary:"#002C5F", secondary:"#A2AAAD"}
-  //     case "Jacksonville Jaguars":
-  //         return {primary:"#101820", secondary:"#D7A22A"}
-  //     case "Kansas City Chiefs":
-  //         return {primary:"#E31837", secondary:"#FFB81C"}
-  //     case "Los Angeles Chargers":
-  //         return {primary:"#D7A22A", secondary:"#000000"}
-  //     case "Los Angeles Rams":
-  //         return {primary:"#003594", secondary:"#FFA300"}
-  //     case "Miami Dolphins":
-  //         return {primary:"#008E97", secondary:"#FC4C02"}
-  //     case "Minnesota Vikings":
-  //         return {primary:"#4F2683", secondary:"#FFC62F"}
-  //     case "New England Patriots":
-  //         return {primary:"#002244", secondary:"#C60C30"}
-  //     case "New Orleans Saints":
-  //         return {primary:"#D3BC8D", secondary:"#101820"}
-  //     case "New York Giants":
-  //         return {primary:"#0B2265", secondary:"#A71930"}
-  //     case "New York Jets":
-  //         return {primary:"#125740", secondary:"#000000"}
-  //     case "Las Vegas Raiders":
-  //         return {primary:"#000000", secondary:"#A5ACAF"}
-  //     case "Philadelphia Eagles":
-  //         return {primary:"#004C54", secondary:"#A5ACAF"}
-  //     case "Pittsburgh Steelers":
-  //         return {primary:"#FFB612", secondary:"#0000000"}
-  //     case "San Francisco 49ers":
-  //         return {primary:"#AA0000", secondary:"#B3995D"}
-  //     case "Seattle Seahawks":
-  //         return {primary:"#69BE28", secondary:"#002244"}
-  //     case "Tampa Bay Buccaneers":
-  //         return {primary:"#D50A0A", secondary:"#FF7900"}
-  //     case "Tennessee Titans":
-  //         return {primary:"#0C2340", secondary:"#4B92DB"}
-  //     case "Washington Redskins":
-  //         return {primary:"#773141;", secondary:"#FFB612"}
-  //       break;
-  //     default:
-  //       return {primary: "blue"}
-  //   }
-  // }
   const handleChange = (event, { value }) => {
     setPickEm((arr) => [...arr, value]);
   };
@@ -166,7 +93,7 @@ const Bet = () => {
         <Modal.Header id="headers" style={{fontSize: "50px"}}>Betting Odds</Modal.Header>
         <Modal.Content  style={{backgroundColor: "#002244" }} scrolling>
           <Modal.Description>
-            <Grid stackable columns={2} padded="vertically">
+            <Grid stackable reversed="mobile" columns={2} padded="vertically">
               <Grid.Column>
                 <Table celled compact definition>
                   <Table.Header fullWidth>

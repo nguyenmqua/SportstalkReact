@@ -14,6 +14,7 @@ import Notifications from "./components/Notifications";
 import Member from "./pages/Member";
 import UserPost from "./components/UserPost";
 import UpdateResult from "./components/UpdateResults";
+import Result from "./components/Result"
 import { Grid, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 const App = () => {
@@ -64,10 +65,11 @@ const App = () => {
       API.login(data)
         .then((user) => {
           if (user.data.loggedIn) {
-            setLoggedin(true);
+             window.location.href = "/"
+             setLoggedin(true);
             setUser(user.data.user);
             console.log("log in successful");
-            window.location.href = "/";
+           
           } else {
             console.log("Something went wrong :(");
             setLoginFailureMessage("Login failed, Please try again.");
@@ -336,6 +338,7 @@ const App = () => {
                     <Notifications />
                     <UserPost />
                     <UpdateResult />
+                    <Result />
                     </Switch>
                   </Segment>
                 </Sidebar.Pusher>

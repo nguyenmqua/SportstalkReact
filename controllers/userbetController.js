@@ -13,6 +13,14 @@ module.exports = {
             path: "sportTicket",
             populate: {path: "competitor"}
         })
+        .populate({
+            path: "sportTicket",
+            populate: {path: "winner"}
+        })
+        .populate({
+            path: "sportTicket",
+            populate: {path: "updater"}
+        })
         .then(DBpost => res.json(DBpost))
         .catch(err => res.status(422).json(err));
     },

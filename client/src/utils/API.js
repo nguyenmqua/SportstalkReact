@@ -89,7 +89,6 @@ export default {
   },
  
   settleBet(data){
-    console.log(data)
     return axios.put("/api/userbet",data)
   },
   getNotifications(id){

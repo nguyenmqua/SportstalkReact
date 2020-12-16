@@ -23,8 +23,8 @@ module.exports = {
             populate: {path: "winner"}
         })
         .populate('userId')
-        .then(DBdata=> {console.log(DBdata)
-            res.json(DBdata)}
+        .then(DBdata=>
+            res.json(DBdata)
             )
         .catch(err=>res.status(422).json(err))
     },

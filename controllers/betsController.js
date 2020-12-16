@@ -2,7 +2,6 @@ const db = require("../models")
 
 module.exports = {
     create: function(req,res){
-        console.log(req.body)
         db.Bets
         .create(req.body)
         .then(res =>  db.Notifications.create({
@@ -12,13 +11,11 @@ module.exports = {
             }))
         .then(res =>  db.User.findOneAndUpdate({_id: req.body.competitor}, { $push: { notifications: res._id } }, { new: true },))
         .then(dbPost => {
-            console.log(dbPost)
             res.json(dbPost)})
         .catch(err => res.status(422).json(err))
     },
 
     getByID: function (req,res) {
-        console.log(req.params.id)
         db.Bets
         .findById(req.params.id)
         .populate("userId")
@@ -30,7 +27,6 @@ module.exports = {
 
     updateByID: function(req,res){
 
-        console.log(req.body)
         db.Notifications
             .remove({sportTicket: req.body.id, userId: req.body.userId})
         .then(res=>db.Bets
