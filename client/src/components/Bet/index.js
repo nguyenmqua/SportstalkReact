@@ -36,6 +36,7 @@ const Bet = () => {
   };
 
   const handleSubmit = () => {
+    setLoading(true)
     const bets = {
       sportTicket: pickEm,
       competitor: search,
@@ -46,6 +47,7 @@ const Bet = () => {
       .then((res) => {
         setOpen(false);
         setSearch("");
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);

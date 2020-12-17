@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useContext} from 'react';
-import { Button, Modal,Card, Table } from 'semantic-ui-react'
+import { Button, Modal,Card, Table, Dimmer, Loader} from 'semantic-ui-react'
 import API from '../../utils/API';
 import UserContext from "../../utils/UserContext"
 
 const Odds = () => {
     const [Open, setOpen] = useState(false)
     const [NFLgames, setNFLgames] = useState([])
+    const[loading, setLoading] = useState(false)
     const {footballColor} = useContext(UserContext)
   
     useEffect(()=>{
+        setLoading(true)
         API.getNFL()
         .then(res => {
+            setLoading(false)
             setNFLgames(res.data)
             })
     }, []);
@@ -21,7 +24,12 @@ const Odds = () => {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         trigger={<Button id="headers" color="blue" style={{fontSize: "24px", color:"#000000"}}>Compare Sportsbooks</Button>}
-        >
+        >{loading ? (
+            <Dimmer active>
+               <Loader content='Loading' />
+             </Dimmer>
+           ):(
+             <>
         <Modal.Header id="headers" style={{fontSize: "50px" ,backgroundColor: 'grey'}}>Compare Sportsbook</Modal.Header>
         <Modal.Content scrolling>
             <Modal.Description>
@@ -68,7 +76,7 @@ const Odds = () => {
             Close
           </Button>
         </Modal.Actions>
-        
+        </>)}
       </Modal>
     </>
     )
