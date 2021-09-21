@@ -2,8 +2,8 @@ const axios = require('axios')
 
 // const api_key = process.argv[2] || '095b2dca8cd6fa9a17b303b8694d3362' (Janeth)
 // const api_key = process.argv[2] || '23117c580c41f8c13a4ba8b100f9ee7e'  newone
-// const api_key = process.argv[2] || '73a6013b3823076c32114f2566a39e6d'
-const api_key = process.argv[2] || '2480ba5ee8cceae8b8c0cc26edcaadda'
+const api_key = process.argv[2] || '73a6013b3823076c32114f2566a39e6d'
+// const api_key = process.argv[2] || '2480ba5ee8cceae8b8c0cc26edcaadda'
 
 
 
@@ -31,10 +31,11 @@ module.exports = {
             })
         .then(response => {
             res.json(response.data.data);
-   
+            console.log(response.data.data)
+            console.log(response.data)
         })
         .catch(error => {
-            console.log('Error status SportsOdd', error.response.status)
+            // console.log('Error status SportsOdd', error.response.status)
             console.log(error.response.data)
         })
     },

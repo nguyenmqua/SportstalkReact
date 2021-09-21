@@ -23,7 +23,7 @@ const Results = ({allResults}) =>{
                         {bet.winner._id===user._id ? (
                             <>
                         <Card.Content extra>
-                               <Card.Header style={{color:"green"}}>Congrats! You won this wager for {bet.wager}. Good win {bet.winner.username}!</Card.Header>
+                               <Card.Header style={{color:"green"}}>Congrats! You won this wager for ${bet.wager}. Good win {bet.winner.username}!</Card.Header>
                         </Card.Content>                               
                          <Card.Meta>{moment(bet.createdAt).fromNow}</Card.Meta>
 
