@@ -36,7 +36,7 @@
     "mongodb-moment": "^1.0.2",
     "mongoose": "^5.3.16",
     "morgan": "^1.10.0",
-    "npm": "^10.2.5",
+    "npm": "v16.17.1.",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   }
