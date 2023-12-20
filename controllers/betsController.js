@@ -29,7 +29,7 @@ module.exports = {
 
         db.Notifications
             .remove({sportTicket: req.body.id, userId: req.body.userId})
-        .then(res=>db.Bets
+            .then(res=>db.Bets
             .update(
                 {_id: req.body.id}, 
                 { approval: true })        

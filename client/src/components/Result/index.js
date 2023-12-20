@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import UserContext from '../../utils/UserContext'
 import { Card, Grid} from 'semantic-ui-react'
 import moment from "moment"
+import UserContext from '../../utils/UserContext'
 
 const Results = ({allResults}) =>{
     const {user,footballColor} = useContext(UserContext)

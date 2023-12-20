@@ -31,8 +31,6 @@ module.exports = {
             })
         .then(response => {
             res.json(response.data.data);
-            console.log(response.data.data)
-            console.log(response.data)
         })
         .catch(error => {
             // console.log('Error status SportsOdd', error.response.status)
@@ -50,6 +48,7 @@ module.exports = {
                SportsNews.push(response.data.articles[i].title)
             }
             res.json(SportsNews);
+            console.log(SportsNews)
         })
         .catch(error => {
             console.log('Error status', error.response.status)
